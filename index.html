@@ -80,7 +80,15 @@
         actionmax:5,    //最大操作次数
         list:['','','src/img/background.jpg','','src/img/background.jpg','','src/img/background.jpg','','']  //错误图片 9宫格
     };
+    function preLoadImg(url) {
+        var img = new Image();
+        img.src = url;
+    }
     $(function(){
+        var imgArr=["src/img/star_win.png","src/img/star_lose.png","src/img/single-btn.png"];
+        for(var i=0;i<imgArr.length;i++){
+            preLoadImg(imgArr[i])
+        }  //预加载图片
         var ZC={
             init:function(){
                 ZC.ajax();
