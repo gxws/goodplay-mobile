@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no,maximum-scale=1.0">
+    <title>玩赚大咖</title>
+    <link href="src/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+<body style="background: url('src/img/background.jpg') no-repeat;background-size: 100% 100%">
+<div class="wrap pr">
+    <div class="head pr">
+        <div class="head-img"></div>
+        <div class="head-timeImg"></div>
+        <p class="head-txt pa"><span class="supplier"></span>将为您提供<span class="integral"></span>奖励喔！</p>
+        <p class="head-time pa"></p>
+    </div>
+
+    <div class="main " >
+        <div class="content pr contentI" >
+            <table class="zaoca-table">
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+        <div class="content pr  contentN" >
+            <table class="zaoca-table zaoca">
+                <tr >
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td ></td>
+                    <td ></td>
+                    <td ></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+</div>
+<div class="Mengcheng"></div>
+<div class="single-deck"  >
+    <div class="single-star"></div>
+    <div class="single-txt">
+        <p>奖励于您不远了</p>
+        <p>需再接再厉 !</p>
+    </div>
+    <div class="single-btn ">
+        <a href="#" class="red">邀请好友</a>
+        <a href="#">继续找茬</a>
+    </div>
+</div>
+<input type="button" id="test" value="alert" />
+<script type="text/javascript">
+    window.onload=function(){
+        var oInput=document.getElementById('test');
+        oInput.addEventListener("click",Alert,false)
+    };
+    function Alert(){
+        alert("test")
+    }
+</script>
+<script src="src/js/rem.js"></script>
+<script src="src/js/jquery-1.7.2.min.js"></script>
+<script>
+    var json={
+        background:"src/img/main.jpg",
+        supplier:"哇蛤蛤",     //商家名称
+        integral:"21积分",    //得到的奖励
+        time:10,       //游戏时间
+        actionmax:5,    //最大操作次数
+        list:['','','src/img/background.jpg','','src/img/background.jpg','','src/img/background.jpg','','']  //错误图片 9宫格
+    };
+    $(function(){
+        var ZC={
+            init:function(){
+                ZC.ajax();
+                $(".zaoca td").on("click",ZC.change)
+            },
+            ajax:function(){
+                $(".zaoca td").attr("data-tag","0");
+//                var json={
+//                    background:"src/img/main.jpg",
+//                    supplier:"哇蛤蛤",     //商家名称
+//                    integral:"21积分",    //得到的奖励
+//                    time:101,       //游戏时间
+//                    actionmax:5,    //最大操作次数
+//                    list:['','','src/img/background.jpg','','src/img/background.jpg','','src/img/background.jpg','','']  //错误图片 9宫格
+//                };
+                ZC.actionmax=json.actionmax;    //操作次数上限
+
+                ZC.insertion(json)
+            },
+            insertion:function(json){
+                $(".head-time").html(json.time+"<span>s</span>");
+                $(".supplier").html(json.supplier);
+                $(".integral").html(json.integral);
+                $(".content").css({background:"url("+json.background+") no-repeat","background-size":"100% 100%"});
+                var img;
+                $.each(json.list,function(i,n){
+                    if(n){
+                         img="<img src='src/img/true.png' class='result'>";
+                        $(".zaoca td:eq("+i+")").css({background:"url("+ n+")","background-size":"100% 100%" }).attr("data-tag","1")
+                    }else{
+                        img="<img src='src/img/false.png' class='result'>";
+                    }
+                    $(".zaoca td:eq("+i+")").html(img)
+
+                });
+                ZC.playtime=json.time; //游戏时间
+                var playtime;
+                function timer(){
+                    playtime=  setTimeout(function(){
+                        json.time--;
+                        $(".head-time").html(json.time+"<span>s</span>");
+                        if(json.time<=0){
+                            clearTimeout(playtime);
+                            $(".single-star").css({background:"url('src/img/star_lose.png') no-repeat","background-size":"100% 100%"});
+                            $(".single-deck").show(200);
+                            $(".Mengcheng").fadeIn(200)
+                        }else{
+                            timer()
+                        }
+                    },1000)
+                }
+                timer()
+            },
+            change:function(){
+                $(this).find("img").fadeIn(200);
+                var tag=$(this).attr("data-tag");
+                if(tag==true){
+                    $(this).attr("data-tag",0)
+                }
+                if($(".zaoca td[data-tag=1]").length==0){
+                    $(".single-star").css({background:"url('src/img/star_win.png') no-repeat","background-size":"100% 100%"});
+                    $(".single-deck").show(200);
+                    $(".Mengcheng").fadeIn(200)
+                }
+                if( $(".result[src='src/img/false.png']:visible").length>=3 ){
+                    $(".single-star").css({background:"url('src/img/star_lose.png') no-repeat","background-size":"100% 100%"});
+                    $(".single-deck").show(200);
+                    $(".Mengcheng").fadeIn(200)
+                }
+
+            }
+        };
+        ZC.init();
+    })
+
+</script>
+</body>
+</html>
