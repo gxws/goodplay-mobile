@@ -140,14 +140,11 @@
                 var zaoca;
                 if(index<=8){
                     zaoca=$(".zaoca-table td:eq("+(parseInt(index)+9)+")");
-                   if(zaoca.attr("data-tag")==true){
-                       zaoca.attr("data-tag",0)
-                   }
                 }else{
                      zaoca=$(".zaoca-table td:eq("+(parseInt(index)-9)+")");
-                    if(zaoca.attr("data-tag")==true){
-                        zaoca.attr("data-tag",0)
-                    }
+                }
+                if(zaoca.attr("data-tag")==true){
+                    zaoca.attr("data-tag",0)
                 }
                 zaoca.find("img").fadeIn(200);
                 $(this).find("img").fadeIn(200);
