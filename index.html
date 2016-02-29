@@ -76,26 +76,19 @@
         background:"src/img/main.jpg",
         supplier:"哇蛤蛤",     //商家名称
         integral:"21积分",    //得到的奖励
-        time:10,       //游戏时间
+        time:110,       //游戏时间
         actionmax:5,    //最大操作次数
         list:['','','src/img/background.jpg','','src/img/background.jpg','','src/img/background.jpg','','']  //错误图片 9宫格
     };
-    function preLoadImg(url) {
-        var img = new Image();
-        img.src = url;
-    }
+
     $(function(){
-        var imgArr=["src/img/star_win.png","src/img/star_lose.png","src/img/single-btn.png"];
-        for(var i=0;i<imgArr.length;i++){
-            preLoadImg(imgArr[i])
-        }  //预加载图片
         var ZC={
             init:function(){
                 ZC.ajax();
-                $(".zaoca td").on("touchend",ZC.change)
+                $(".zaoca-table td").on("touchend",ZC.change)
             },
             ajax:function(){
-                $(".zaoca td").attr("data-tag","0");
+                $(".zaoca-table td").attr("data-tag","0");
 //                var json={
 //                    background:"src/img/main.jpg",
 //                    supplier:"哇蛤蛤",     //商家名称
@@ -121,8 +114,8 @@
                     }else{
                         img="<img src='src/img/false.png' class='result'>";
                     }
-                    $(".zaoca td:eq("+i+")").html(img)
-
+                    $(".zaoca td:eq("+i+")").html(img);
+                    $(".zaoca-table td:eq("+i+")").html(img)
                 });
                 ZC.playtime=json.time; //游戏时间
                 function timer(){
@@ -142,19 +135,34 @@
                 timer()
             },
             change:function(){
+                var index=$(this).index(".zaoca-table td");
+                console.log(index);
+                var zaoca;
+                if(index<=8){
+                    zaoca=$(".zaoca-table td:eq("+(parseInt(index)+9)+")");
+                   if(zaoca.attr("data-tag")==true){
+                       zaoca.attr("data-tag",0)
+                   }
+                }else{
+                     zaoca=$(".zaoca-table td:eq("+(parseInt(index)-9)+")");
+                    if(zaoca.attr("data-tag")==true){
+                        zaoca.attr("data-tag",0)
+                    }
+                }
+                zaoca.find("img").fadeIn(200);
                 $(this).find("img").fadeIn(200);
                 var tag=$(this).attr("data-tag");
                 if(tag==true){
                     $(this).attr("data-tag",0)
                 }
-                if($(".zaoca td[data-tag=1]").length==0){
+                if($(".zaoca-table td[data-tag=1]").length==0){
                     clearTimeout(ZC.playtime);
                     $(".single-star").css({background:"url('src/img/star_win.png') no-repeat","background-size":"100% 100%"});
                     $(".single-txt").html("<p>成功收入</p><p class='yellow'>"+json.supplier+"<span>"+json.integral+"</span>!</p>");
                     $(".single-deck").show(200);
                     $(".Mengcheng").fadeIn(200)
                 }
-                if( $(".result[src='src/img/false.png']:visible").length>=3 ){
+                if( $(".result[src='src/img/false.png']:visible").length>=6 ){
                     clearTimeout(ZC.playtime);
                     $(".single-star").css({background:"url('src/img/star_lose.png') no-repeat","background-size":"100% 100%"});
                     $(".single-txt").html("<p>奖励于您不远了</p><p>需再接再厉 !</p>");
@@ -165,8 +173,15 @@
             }
         };
         ZC.init();
-    })
-
+        var imgArr=["src/img/star_win.png","src/img/star_lose.png","src/img/single-btn.png"];
+        for(var i=0;i<imgArr.length;i++){
+            preLoadImg(imgArr[i])
+        }  //预加载图片
+    });
+    function preLoadImg(url) {
+        var img = new Image();
+        img.src = url;
+    }
 </script>
 </body>
 </html>
