@@ -8,7 +8,7 @@ html, body {
 .wrap{width: 95%;margin: 0 auto;height: 100%}
 .zaoca td{position: relative}
 .result{position: absolute;width: 100%;height: 100%;left: 0;top: 0;display: none}
-a{text-decoration: none}  .red{color: red!important;}
+a{text-decoration: none}  .red{color: red!important;}  .yellow{color: #EAD735!important}
 
 .Mengcheng{position: fixed;left: 0;top: 0;width: 100%;height: 100%;opacity: 0.6;background: black;display: none;}
 

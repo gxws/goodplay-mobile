@@ -61,8 +61,8 @@
 <div class="single-deck"  >
     <div class="single-star"></div>
     <div class="single-txt">
-        <p>奖励于您不远了</p>
-        <p>需再接再厉 !</p>
+        <!--<p>奖励于您不远了</p>-->
+        <!--<p>需再接再厉 !</p>-->
     </div>
     <div class="single-btn ">
         <a href="#" class="red">邀请好友</a>
@@ -84,7 +84,7 @@
         var ZC={
             init:function(){
                 ZC.ajax();
-                $(".zaoca td").on("click",ZC.change)
+                $(".zaoca td").on("touchend",ZC.change)
             },
             ajax:function(){
                 $(".zaoca td").attr("data-tag","0");
@@ -117,13 +117,12 @@
 
                 });
                 ZC.playtime=json.time; //游戏时间
-                var playtime;
                 function timer(){
-                    playtime=  setTimeout(function(){
+                    ZC.playtime=  setTimeout(function(){
                         json.time--;
                         $(".head-time").html(json.time+"<span>s</span>");
                         if(json.time<=0){
-                            clearTimeout(playtime);
+                            clearTimeout(ZC.playtime);
                             $(".single-star").css({background:"url('src/img/star_lose.png') no-repeat","background-size":"100% 100%"});
                             $(".single-deck").show(200);
                             $(".Mengcheng").fadeIn(200)
@@ -141,12 +140,16 @@
                     $(this).attr("data-tag",0)
                 }
                 if($(".zaoca td[data-tag=1]").length==0){
+                    clearTimeout(ZC.playtime);
                     $(".single-star").css({background:"url('src/img/star_win.png') no-repeat","background-size":"100% 100%"});
+                    $(".single-txt").html("<p>成功收入</p><p class='yellow'>"+json.supplier+"<span>"+json.integral+"</span>!</p>");
                     $(".single-deck").show(200);
                     $(".Mengcheng").fadeIn(200)
                 }
                 if( $(".result[src='src/img/false.png']:visible").length>=3 ){
+                    clearTimeout(ZC.playtime);
                     $(".single-star").css({background:"url('src/img/star_lose.png') no-repeat","background-size":"100% 100%"});
+                    $(".single-txt").html("<p>奖励于您不远了</p><p>需再接再厉 !</p>");
                     $(".single-deck").show(200);
                     $(".Mengcheng").fadeIn(200)
                 }
