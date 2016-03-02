@@ -65,10 +65,11 @@
         <!--<p>需再接再厉 !</p>-->
     </div>
     <div class="single-btn ">
-        <a href="#" class="red">邀请好友</a>
-        <a href="#">继续找茬</a>
+        <a href="#" class="red J-share">邀请好友</a>
+        <a href="#" class="continue ">继续找茬</a>
     </div>
 </div>
+<div class="share"></div>
 <script src="src/js/rem.js"></script>
 <script src="src/js/jquery-1.7.2.min.js"></script>
 <script>
@@ -85,7 +86,15 @@
         var ZC={
             init:function(){
                 ZC.ajax();
-                $(".zaoca-table td").on("touchend",ZC.change)
+                //在下面绑定事件
+                $(".zaoca-table td").on("touchend",ZC.change);
+                $(".J-share").on("touchend",ZC.share);
+                $(".continue").on("touchend",ZC.continue)
+                $(".Mengcheng").on("touchend",function(){
+                    $(".single-deck").fadeIn(200);
+                    $(".share").fadeOut("fast");
+
+                })
             },
             ajax:function(){
                 $(".zaoca-table td").attr("data-tag","0");
@@ -156,21 +165,30 @@
                     clearTimeout(ZC.playtime);
                     $(".single-star").css({background:"url('src/img/star_win.png') no-repeat","background-size":"100% 100%"});
                     $(".single-txt").html("<p>成功收入</p><p class='yellow'>"+json.supplier+"<span>"+json.integral+"</span>!</p>");
-                    $(".single-deck").show(200);
+                    $(".single-deck").fadeIn(200).addClass("xuanzhuan");
                     $(".Mengcheng").fadeIn(200)
                 }
                 if( $(".result[src='src/img/false.png']:visible").length>=6 ){
                     clearTimeout(ZC.playtime);
                     $(".single-star").css({background:"url('src/img/star_lose.png') no-repeat","background-size":"100% 100%"});
                     $(".single-txt").html("<p>奖励于您不远了</p><p>需再接再厉 !</p>");
-                    $(".single-deck").show(200);
+                    $(".single-deck").fadeIn(200).addClass("xuanzhuan");
                     $(".Mengcheng").fadeIn(200)
                 }
 
+            },
+            share:function(){
+              $(".share").fadeIn("fast");
+                $(".single-deck").fadeOut(100);
+            },
+           continue:function(){
+                // 继续找茬
+               console.log("继续找茬")
             }
+
         };
         ZC.init();
-        var imgArr=["src/img/star_win.png","src/img/star_lose.png","src/img/single-btn.png"];
+        var imgArr=["src/img/star_win.png","src/img/star_lose.png","src/img/single-btn.png","src/img/share.png"];
         for(var i=0;i<imgArr.length;i++){
             preLoadImg(imgArr[i])
         }  //预加载图片

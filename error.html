@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no,maximum-scale=1.0">
+    <title>喔喔！出错了！</title>
+    <style>
+        *{margin: 0;padding: 0}
+        html,body,.main{height: 100%;width: 100%}
+        .main{width: 60%;height: 30%;position: fixed;top: 15%;left: 20%}
+        .main-img{background: url("src/img/error.png") no-repeat;background-size: 100% 100%;;width: 40%;height: 170%;margin: 0 auto}
+        .main p{color: #fff;text-align: center;}
+        .main-txt{font-size: 0.5rem}
+        .main-error{font-size: 1rem}
+
+        @media all and (orientation : landscape) { /*横*/
+
+        }
+        @media all and (orientation : portrait){ /*竖*/
+            .main{width: 60%;height: 30%;position: fixed;top: 20%;left: 20%}
+            .main-img{background: url("src/img/error.png") no-repeat;background-size: 100% 100%;;width: 60%;height: 100%;margin: 0 auto}
+            .main p{color: #fff;text-align: center;}
+            .main-txt{font-size: 0.9rem}
+            .main-error{font-size: 1.8rem}
+        }
+    </style>
+</head>
+<body style="background: #00A0E9">
+<div class="main">
+    <p class="main-error">{{500}}}</p>
+    <p class="main-txt">{{错误原因错误原因错误原因错误原因}}} </p>
+    <div class="main-img"></div>
+</div>
+<script src="src/js/rem.js"></script>
+</body>
+</html>

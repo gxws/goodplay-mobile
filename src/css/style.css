@@ -3,17 +3,19 @@ html, body {
     height: 100%;
     max-height: 100%;
 }
-
+.xuanzhuan{-moz-transform:rotate(-360deg);
+    -webkit-transform:rotate(-360deg);}
 .pr{position: relative} .pa{position: absolute}
 .wrap{width: 95%;margin: 0 auto;height: 100%}
 .zaoca-table td,.zaoca td{position: relative}
 .result{position: absolute;width: 100%;height: 100%;left: 0;top: 0;display: none}
 a{text-decoration: none}  .red{color: red!important;}  .yellow{color: #EAD735!important}
 
-.Mengcheng{position: fixed;left: 0;top: 0;width: 100%;height: 100%;opacity: 0.6;background: black;display: none;}
+.Mengcheng{position: fixed;left: 0;top: 0;width: 100%;height: 100%;opacity: 0.8;background: black;display: none;}
 
 @media all and (orientation : landscape) { /*ºá*/
-    .main{height: 80%;}
+
+   .main{height: 80%;}
     .head{  height:15%; background: url("../img/head.png") no-repeat;background-size: 100% 100%}
     .head-img{width: 0.7rem;height: 0.7rem;position: absolute;left:2%;top: 25%;background: url("../img/money.png") no-repeat;background-size: 100% 100%;}
     .head-timeImg{width: 1rem;height: 0.85rem;position: absolute;right:3%;top: 20%;background: url("../img/time.png") no-repeat;background-size: 100% 100%;}
@@ -35,15 +37,17 @@ a{text-decoration: none}  .red{color: red!important;}  .yellow{color: #EAD735!im
     .zaoca-table td{border: 1px solid #fff;}
 
     .single-deck{position: fixed;width: 50%;height: 100%;left: 25%;top: 10%;display: none;
-        transition:All 0.4s ease-in-out;
-        -webkit-transition:All 0.4s ease-in-out;
-        -moz-transition:All 0.4s ease-in-out;
-        -o-transition:All 0.4s ease-in-out;}
+        transition:All 0.4s ;
+        -webkit-transition:All 0.4s ;
+        -moz-transition:All 0.4s ;
+        -o-transition:All 0.4s ;}
     .single-star{position: absolute;width: 70%;height: 40%;left: 15%;top:0;background: url("../img/star_lose.png") no-repeat;background-size: 100% 100%;background-position: 0 1px;}
     .single-txt{position: absolute;width: 70%;height: 40%;left: 15%;top: 45%}
     .single-txt p{color: #fff;font-size: 0.6rem;text-align: center;}
     .single-btn{position: absolute;width: 100%;height: 20%;left: 0%;top: 65%}
     .single-btn a{display: inline-block;color: black;width: 40%;height: 80%;background: url('../img/single-btn.png') no-repeat;background-size: 100% 100%;font-size: 0.55rem;margin: 0 0.3rem;text-align: center;line-height: 1.2rem}
+
+    .share{width: 40%;height: 45%;background: url("../img/share.png") no-repeat;background-size: 100% 100%;position: fixed;top: 1%;right: 5%;display: none;}
 }
 @media all and (orientation : portrait){ /*Êú*/
     .main{height: 85%;}
@@ -71,9 +75,11 @@ a{text-decoration: none}  .red{color: red!important;}  .yellow{color: #EAD735!im
         -moz-transition:All 0.4s ;
         -o-transition:All 0.4s ;
     }
-    .single-star{position: absolute;width: 70%;height: 40%;left: 15%;top:0;background: url("../img/star_win.png") no-repeat;background-size: 100% 100%}
-    .single-txt{position: absolute;width: 70%;height: 40%;left: 15%;top: 45%}
+    .single-star{position: absolute;width: 70%;height: 50%;left: 15%;top:0;background: url("../img/star_win.png") no-repeat;background-size: 100% 100%}
+    .single-txt{position: absolute;width: 70%;height: 40%;left: 15%;top: 55%}
     .single-txt p{color: #fff;font-size: 1rem;text-align: center;}
-    .single-btn{position: absolute;width: 90%;height: 20%;left: 9%;top: 70%}
+    .single-btn{position: absolute;width: 90%;height: 20%;left: 9%;top: 80%}
     .single-btn a{display: inline-block;color: black;width: 42%;height: 100%;background: url('../img/single-btn.png') no-repeat;background-size: 100% 100%;margin: 0 0.3rem;text-align: center;line-height: 2.5rem}
+
+    .share{width: 70%;height: 25%;background: url("../img/share.png") no-repeat;background-size: 100% 100%;position: fixed;top: 1%;right:8%;display: none}
 }
