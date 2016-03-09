@@ -74,7 +74,8 @@
 <script src="src/js/jquery-1.7.2.min.js"></script>
 <script>
     var json={
-        url:"baidu.com",
+        url:"baidu.com",  // 请求url
+        data:"", //请求传参 可无
         background:"src/img/main.jpg",
         supplier:"哇蛤蛤",     //商家名称
         integral:"21积分",    //得到的奖励
@@ -91,7 +92,7 @@
                 $(".zaoca-table td").on("touchend",ZC.change);
                 $(".J-share").on("touchend",ZC.share);
                 $(".continue").on("touchend",function(){
-                    ZC.continue(json.url)
+                    console.log("继续找茬")
                 });
                 $(".Mengcheng").on("touchend",function(){
                     $(".single-deck").fadeIn(200);
@@ -137,8 +138,10 @@
                         if(json.time<=0){
                             clearTimeout(ZC.playtime);
                             $(".single-star").css({background:"url('src/img/star_lose.png') no-repeat","background-size":"100% 100%"});
-                            $(".single-deck").show(200);
-                            $(".Mengcheng").fadeIn(200)
+                            $(".single-txt").html("<p>奖励于您不远了</p><p>需再接再厉 !</p>");
+                            $(".single-deck").fadeIn(200).addClass("xuanzhuan");
+                            $(".Mengcheng").fadeIn(200);
+                            ZC.continue(json.url,json.data)
                         }else{
                             timer()
                         }
@@ -169,14 +172,16 @@
                     $(".single-star").css({background:"url('src/img/star_win.png') no-repeat","background-size":"100% 100%"});
                     $(".single-txt").html("<p>成功收入</p><p class='yellow'>"+json.supplier+"<span>"+json.integral+"</span>!</p>");
                     $(".single-deck").fadeIn(200).addClass("xuanzhuan");
-                    $(".Mengcheng").fadeIn(200)
+                    $(".Mengcheng").fadeIn(200);
+                    ZC.continue(json.url,json.data)
                 }
                 if( $(".result[src='src/img/false.png']:visible").length>=6 ){
                     clearTimeout(ZC.playtime);
                     $(".single-star").css({background:"url('src/img/star_lose.png') no-repeat","background-size":"100% 100%"});
                     $(".single-txt").html("<p>奖励于您不远了</p><p>需再接再厉 !</p>");
                     $(".single-deck").fadeIn(200).addClass("xuanzhuan");
-                    $(".Mengcheng").fadeIn(200)
+                    $(".Mengcheng").fadeIn(200);
+                    ZC.continue(json.url,json.data)
                 }
 
             },
@@ -187,7 +192,7 @@
            continue:function(url,data){
                 // 继续找茬
                $.ajax({
-                   type: "POST",
+                   type: "get",
                    url: url,
                    data: data,
                    beforeSend:function(){
