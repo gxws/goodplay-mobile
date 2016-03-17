@@ -2,7 +2,7 @@
  * 微信相关
  */
 wx.ready(function() {
-
+	console.log("验证完成");
 });
 wx.error(function(res) {
 	console.log("没有通过验证");
